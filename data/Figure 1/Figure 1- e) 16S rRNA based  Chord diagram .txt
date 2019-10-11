@@ -1,0 +1,9 @@
+	Alphaproteobacteria	Betaproteobacteria	Gammaproteobacteria	Actinobacteria	Firmicutes	Bacteroidetes	Others
+HL	9	0	4	6	15	1	6
+HR	7	7	12	5	8	5	1
+ML	8	15	4	9	5	6	1
+MR	18	17	7	12	12	0	1
+LL	8	5	10	3	6	6	0
+LR	3	10	8	15	9	6	0
+RL	7	11	9	9	4	4	2
+RR	3	10	14	5	17	4	1

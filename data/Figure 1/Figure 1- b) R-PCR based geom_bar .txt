@@ -1,0 +1,57 @@
+Phylum	Samples	Percentage %
+Proteobacteria	HL	0.573333333
+Proteobacteria	HR	0.557251908
+Proteobacteria	ML	0.469387755
+Proteobacteria	MR	0.50862069
+Proteobacteria	LL	0.495327103
+Proteobacteria	LR	0.496
+Proteobacteria	RL	0.459459459
+Proteobacteria	RR	0.526315789
+Firmicutes	HL	0.173333333
+Firmicutes	HR	0.106870229
+Firmicutes	ML	0.234693878
+Firmicutes	MR	0.198275862
+Firmicutes	LL	0.102803738
+Firmicutes	LR	0.2
+Firmicutes	RL	0.252252252
+Firmicutes	RR	0.111842105
+Actinobacteria	HL	0.146666667
+Actinobacteria	HR	0.167938931
+Actinobacteria	ML	0.214285714
+Actinobacteria	MR	0.103448276
+Actinobacteria	LL	0.168224299
+Actinobacteria	LR	0.2
+Actinobacteria	RL	0.126126126
+Actinobacteria	RR	0.164473684
+Bacteroidetes	HL	0.04
+Bacteroidetes	HR	0.038167939
+Bacteroidetes	ML	0
+Bacteroidetes	MR	0.051724138
+Bacteroidetes	LL	0.112149533
+Bacteroidetes	LR	0.04
+Bacteroidetes	RL	0.072072072
+Bacteroidetes	RR	0.105263158
+Others	HL	0.053333333
+Others	HR	0.083969466
+Others	ML	0.071428571
+Others	MR	0.086206897
+Others	LL	0.065420561
+Others	LR	0.04
+Others	RL	0.072072072
+Others	RR	0.039473684
+Fungus	HL	0.013333333
+Fungus	HR	0.022900763
+Fungus	ML	0.010204082
+Fungus	MR	0.025862069
+Fungus	LL	0.028037383
+Fungus	LR	0.016
+Fungus	RL	0.009009009
+Fungus	RR	0.026315789
+Uncul. Bacteria	HL	0
+Uncul. Bacteria	HR	0.022900763
+Uncul. Bacteria	ML	0
+Uncul. Bacteria	MR	0.025862069
+Uncul. Bacteria	LL	0.028037383
+Uncul. Bacteria	LR	0.008
+Uncul. Bacteria	RL	0.009009009
+Uncul. Bacteria	RR	0.026315789
