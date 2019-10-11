@@ -1,0 +1,93 @@
+Figure 5 - b) LSD test on data
+
+rm(list=ls())
+
+#### Uploade 
+Assessment<-read.table("D:/base on otu data/final r files and graphs/files/inhibition index/inhibition index .csv",sep=",",header=TRUE)
+
+tail(Assessment)
+colnames(Assessment)[2]<-"Inhibition"
+
+
+########################################################################
+library(ggplot2)
+ggplot(Assessment, aes(x=reorder(Bioagents, Inhibition, FUN = median), y=Inhibition), y = Inhibition)+ # reorder(Genotype, -Freq, mean)
+  geom_bar(stat = "identity")
+
+
+###################################################################
+# LSD.test()
+library(agricolae)
+model<-aov(Inhibition~Bioagents , data=Assessment)
+df<-df.residual(model)
+MSerror<-deviance(model)/df
+out <- with(Assessment,LSD.test(Inhibition,Bioagents,df,MSerror))
+
+# Variation interquartil range: Q75 and Q25
+plot(out,variation="IQR")
+
+#endgraph
+out<-LSD.test(model,"Bioagents",p.adj="none",console=TRUE)
+plot(out,variation="SD") # variation standard deviation
+# }
+
+### Create table with letters of differences
+Diff_Groups<-out$groups
+library(data.table)
+Diff_Groups<-setDT(Diff_Groups, keep.rownames = TRUE)[]
+colnames(Diff_Groups)[1]<-"Bioagents"
+
+# Merge two data frame
+Assessment = merge(Assessment, Diff_Groups, by.x = "Bioagents", by.y = "Bioagents")
+colnames(Assessment)[3]<-"group_mean"
+colnames(Assessment)[2]<-"Inhibition"
+
+# find maxi for each groups
+Assessment$maxi=NA
+for (i in unique(Assessment$Bioagents)){
+  Assessment[Assessment$Bioagents==i,"maxi"]<- max(Assessment[Assessment$Bioagents==i,"Inhibition"])
+}
+## count number of observation per group
+library(plyr)
+library(dplyr)
+Observations<-Assessment %>% count(Bioagents)
+Assessment<-merge(Assessment,Observations, by="Bioagents")
+## Create se
+library(sciplot)
+SE<-ddply(Assessment,~Bioagents,summarise,se=se(Inhibition))
+Assessment<-merge(Assessment,SE, by="Bioagents")
+
+  
+###  Draw bar graph
+ggplot(Assessment, aes(x=reorder(Bioagents, -Inhibition, FUN = median), y=Inhibition/n))+ 
+  geom_bar(stat = "identity")+
+geom_text( aes(x = Bioagents, y = maxi+3, label = groups, color=Bioagents))+
+  geom_linerange(aes(ymin=group_mean-se, ymax=group_mean+se), size=2, colour="orange", 
+                position=position_dodge(.9))+
+  scale_y_continuous(name= "Inhibition index", breaks=seq(0,30,10))+
+  scale_x_discrete(name="Bioagents")
+
+
+############# bar graphy plot############
+rm(list=ls())
+library(ggplot2)
+
+#### Uploade
+
+attach(inhibition)
+ggplot(inhibition, aes(x=factor(Bioagents,levels = c( "3302", "MR3", "MR10", "RR11", "RR28", "RL3")), 
+                       ordered=TRUE, color=Bioagents, y=`Inhibition index`, fill=Bioagents))+
+  geom_bar(width = 0.7, stat="identity", colour="black")+coord_cartesian(ylim = c(10,25,15))+ scale_fill_manual(values = c("#00ff00", "#0000ff", "#ee82ee", "#ff0000", "#ffa500", "#ffff00"))+ 
+  theme_classic()+geom_linerange(aes(ymin= `Inhibition index`-se, ymax=`Inhibition index`+se),
+                                color="black", size=1 ,position = position_dodge(.5))+
+  theme(axis.text.x = element_text(color = "black", size = 12, angle = 45, hjust = .5, vjust = .5, face = "plain"), panel.border = element_rect(colour = "black", fill=NA, size = 1), 
+        axis.text.y =element_text(color = "black", size = 12, angle = 0, hjust = 1, vjust = 0, face = "plain"), 
+        axis.title.x = element_text(color = "black", size = 12, angle = 0, hjust = .5, vjust = 0, face = "plain"), 
+        axis.title.y = element_text(color = "black", size = 14, angle = 90, hjust = .5, vjust = .5, face = "plain"), 
+        axis.line.x = element_line(color = "black", size = 1,), axis.line.y = element_line(color = "black", size = 1), 
+        legend.text = element_text(size = 12),legend.title = element_text(size = 14), legend.key.height = unit(.7, "cm"), 
+        legend.key.width = unit(.7, "cm"))
+
+
+
+

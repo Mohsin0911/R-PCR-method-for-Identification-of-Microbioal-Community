@@ -1,0 +1,113 @@
+
+
+Figure-1 g) Functional pheatmap based on  16S rRNA ####### 16S rRNA
+
+rm(list=ls())
+
+library(pheatmap)
+library(cluster) #clustering algorithms
+library(RColorBrewer)
+library(gplots)
+
+### Uploade file
+data<- read.csv(file.choose(), sep=",", header = T, row.names = "X", text = Lines, check.names = FALSE)
+
+data_subset <- as.matrix(data)
+
+pheatmap(data_subset, cellheight = 10, cluster_cols =F, cluster_rows = F)
+
+Jiayou <- data.frame(row.names = rownames(data_subset), 
+                     Phylum = factor(rep(c("Firmicutes","Betaproteobacteria","Bacteroidetes", 
+                                           "Actinobacteria","Alphaproteobacteria","Gammaproteobacteria", 
+                                           "Actinobacteria","Acidobacteria", "Actinobacteria", 
+                                           "Actinobacteria", "Gammaproteobacteria", "Alphaproteobacteria",
+                                           "Firmicutes","Actinobacteria", "Alphaproteobacteria", 
+                                           "Firmicutes", "Deltaproteobacteria", "Actinobacteria", 
+                                           "Alphaproteobacteria","Actinobacteria", "Betaproteobacteria",
+                                           "Betarpoteobacteria", "Actinobacteria", "Alphaproteobacteria", 
+                                           "Gammaproteobacteria","Betaproteobacteria","Alphaproteobacteria", 
+                                           "Betaproteobacteria", "Alphaproteobacteria", "Gammaproteobacteria",
+                                           "Actinobacteria", "Firmicutes", "Actinobacteria",
+                                           "Alphaproteobacteria", "Actinobacteria","Alphaproteobacteria", 
+                                           "Gammaproteobacteria","Gammaproteobacteria", "Betaproteobacteria"), 
+                                         c(1, 1, 1,
+                                           1, 1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1))))
+
+newCols <- colorRampPalette(grDevices::rainbow(length(unique(Jiayou$Phylum))))
+mycolors <- newCols(length(unique(Jiayou$Phylum)))
+names(mycolors) <- unique(Jiayou$Phylum)
+mycolors <- list(Phylum = mycolors)
+
+
+############################# no border with black&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+pheatmap(data_subset, cellwidth = 17,cellheight = 5,color= colorpanel(75, "black", "yellow"),
+         angle_col = "315", trace="none",cluster_cols = F, cluster_rows = F, 
+         annotation_row= Jiayou, annotation_colors = mycolors,fontsize_col = 10 ,fontsize =13, legend = F, 
+         legend_breaks = 0:1, border=F, trace="none", labels_row = NA,annotation_legend = F)
+
+
+
+
+
+Figure-1 h) Functional pheatmap based on  R-PCR ####### R-PCR 
+
+rm(list=ls())
+library(pheatmap)
+library(cluster) #clustering algorithms
+library(RColorBrewer)
+library(gplots)
+### Uploade file
+data<- read.csv(file.choose(), sep=",", header = T, row.names = "X", text = Lines, check.names = FALSE)
+
+data_subset <- as.matrix(data)
+
+pheatmap(data_subset, cellheight = 10, cluster_cols =F, cluster_rows = F)
+
+Jiayou <- data.frame(row.names = rownames(data_subset), 
+                     Phylum = factor(rep(c("Actinobacteria","Actinobacteria","Bacteroidetes", 
+                                           "Alphaproteobacteria","Betaproteobacteria","Spirochaetes", 
+                                           "Betaproteobacteria","Alphaproteobacteria", "Alphaproteobacteria", 
+                                           "Planctomycetes", "Firmicutes", "Gammaproteobacteria",
+                                           "Alphaproteobacteria","Bacteroidetes","Actinobacteria", 
+                                           "Actinobacteria", "Firmicutes", "Firmicutes", 
+                                           "Gammaproteobacteria","Alphaproteobacteria", "Gammaproteobacteria",
+                                           "Betarpoteobacteria", "Actinobacteria", "Betarpoteobacteria", 
+                                           "Actinobacteria","Alphaproteobacteri","Gammaproteobacteria", 
+                                           "Actinobacteria", "Alphaproteobacteria", "Betarpoteobacteria",
+                                           "Betarpoteobacteria", "Alphaproteobacteria", "Firmicutes",
+                                           "Actinobacteria", "Gammaproteobacteria","Betaproteobacteria"), 
+                                         c(1, 1, 1,
+                                           1, 1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1))))
+
+
+newCols <- colorRampPalette(grDevices::rainbow(length(unique(Jiayou$Phylum))))
+mycolors <- newCols(length(unique(Jiayou$Phylum)))
+names(mycolors) <- unique(Jiayou$Phylum)
+mycolors <- list(Phylum = mycolors)
+
+############################# no border with black&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+pheatmap(data_subset, cellwidth = 17,cellheight = 5,color= colorpanel(75, "black", "YELLOW"),
+         angle_col = "315", trace="none",cluster_cols = F, cluster_rows = F, 
+         annotation_row= Jiayou, annotation_colors = mycolors,fontsize_col = 10 ,fontsize =13, legend = T, 
+         legend_breaks = 0:1, border=F, trace="none", labels_row = NA,annotation_legend = T)

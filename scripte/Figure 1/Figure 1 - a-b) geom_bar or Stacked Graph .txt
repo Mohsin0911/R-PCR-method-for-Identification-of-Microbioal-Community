@@ -1,0 +1,46 @@
+
+Figure-1 a) Stacked Graph ####### based on 16S rRNA  Relative abundance 16 s
+
+rm(list=ls())
+### Uploade file 
+
+attach(relative_abundance_16_S)
+library(ggplot2)
+
+ggplot(relative_abundance_16_S, aes(fill= factor(Phylum,levels = c("Others","Bacteroidetes","Actinobacteria","Firmicutes","Proteobacteria")), 
+                                    Phylum, y= `Percentage %`, x=factor(Samples, levels = c("HL","HR", "ML", "MR", "LL", "LR", "RL", "RR"))))+
+  geom_bar(stat="identity", position= "fill", width = 0.8)+theme_classic()+
+  guides(fill =guide_legend(title = "Phylum", title.position = "top"))+
+  scale_fill_manual(values = c('#666666','#12E772','#266EF6','#FF00C8','#FF0130'))+
+  theme(axis.text.x = element_text(color = "black", size = 14, angle = 45, hjust = 0.5, vjust = 0.5, face = "plain"),
+        axis.text.y =element_text(color = "black", size = 14, angle = 0, hjust = 1, vjust = 0, face = "plain"),
+        axis.title.x = element_text(color="Black", size = 14),axis.title.y = element_text(colour = "black", size = 14),
+        axis.line.x = element_line(color = "black", size = 1,), axis.line.y = element_line(color = "black", size = 1), 
+        legend.text = element_text(size = 12),legend.title = element_text(size = 14),
+        legend.key.height = unit(0.8, "cm"), legend.key.width = unit(0.8, "cm"))+
+  scale_y_continuous(labels = function(x) paste0(x*100), "Percentage %")
+
+
+Figure-1 b) Stacked Graph ####### based R-PCR  Relative abundance R-PCR 
+
+Stacked Graph. Relative abundance RPCR
+
+rm(list=ls())
+
+### Uploade file 
+
+attach(RELATIVE_ABB_)
+library(ggplot2)
+
+ggplot(RELATIVE_ABB_, aes(fill= factor(Phylum,levels = c("Fungus" ,"Uncul. Bacteria" ,"Others","Bacteroidetes","Actinobacteria","Firmicutes","Proteobacteria")), 
+                                    Phylum, y= `Percentage %`, x=factor(Samples, levels = c("HL","HR", "ML", "MR", "LL", "LR", "RL", "RR"))))+
+  geom_bar(stat="identity", position= "fill", width = 0.8)+theme_classic()+
+  guides(fill =guide_legend(title = "Phylum", title.position = "top"))+
+  scale_fill_manual(values = c('#ffa781','#00e1d9','#666666','#12E772','#266EF6','#FF00C8','#FF0130'))+
+  theme(axis.text.x = element_text(color = "black", size = 14, angle = 45, hjust = 0.5, vjust = 0.5, face = "plain"),
+        axis.text.y =element_text(color = "black", size = 14, angle = 0, hjust = 1, vjust = 0, face = "plain"),
+        axis.title.x = element_text(color="Black", size = 14),axis.title.y = element_text(colour = "black", size = 14),
+        axis.line.x = element_line(color = "black", size = 1,), axis.line.y = element_line(color = "black", size = 1), 
+        legend.text = element_text(size = 12),legend.title = element_text(size = 14),
+        legend.key.height = unit(0.6, "cm"), legend.key.width = unit(0.6, "cm"))+
+  scale_y_continuous(labels = function(x) paste0(x*100), "Percentage %")

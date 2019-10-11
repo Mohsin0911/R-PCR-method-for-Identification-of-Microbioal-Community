@@ -1,0 +1,59 @@
+
+Figure-1 c) pheatmap based on 16S rRNA #######  16S rRNA  
+
+rm(list=ls())
+
+library(pheatmap)
+
+library(cluster) #clustering algorithms
+
+### Uploade file
+data<- read.csv(file.choose(), sep=",", header = T, row.names = "x")
+
+data_subset <- as.matrix(data)
+
+Jiayou <- data.frame(row.names = rownames(data_subset), 
+                     Phylum = factor(rep(c("Firmicutes","Proteobacteria","Proteobacteria","Actinobacteria","Bacteroidetes","Proteobacteria", "Proteobacteria", "Actinobacteria", "Proteobacteria", "Actinobacteria", "Firmicutes", "Actinobacteria", "Proteobacteria", "Proteobacteria", "Proteobacteria","Proteobacteria", "Proteobacteria", "Proteobacteria", "Firmicutes", "Actinobacteria"), c(1, 1, 1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1))))
+
+newCols <- colorRampPalette(grDevices::rainbow(length(unique(Jiayou$Phylum))))
+mycolors <- newCols(length(unique(Jiayou$Phylum)))
+names(mycolors) <- unique(Jiayou$Phylum)
+mycolors <- list(Phylum = mycolors)
+
+pheatmap(data_subset, cellwidth = 18,cellheight = 15,color= colorpanel(75, "brown", "yellow", "dark grey"),
+         fontsize_row =12, fontsize_col = 13,angle_col = "45", trace="none", 
+         annotation_row= Jiayou, annotation_colors = mycolors, fontsize = 11, legend = F, 
+         legend_breaks = c(4.5,2,-1), border_color = "dark orange", annotation_legend = F)
+
+
+
+Figure-1 d) pheatmap based on R-PCR #######  R-PCR
+
+rm(list=ls())
+
+library(pheatmap)
+
+library(cluster) #clustering algorithms
+
+### Uploade file
+data<- read.csv(file.choose(), sep=",", header = T, row.names = "x")
+
+data_subset <- as.matrix(data)
+
+Jiayou <- data.frame(row.names = rownames(data_subset), 
+                     Phylum = factor(rep(c("Firmicutes","Proteobacteria","Proteobacteria","Actinobacteria","Bacteroidetes","Proteobacteria", "Proteobacteria", "Actinobacteria", "Proteobacteria", "Actinobacteria", "Firmicutes", "Actinobacteria", "Proteobacteria", "Proteobacteria", "Proteobacteria","Proteobacteria", "Proteobacteria", "Proteobacteria", "Firmicutes", "Actinobacteria"), c(1, 1, 1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1))))
+
+newCols <- colorRampPalette(grDevices::rainbow(length(unique(Jiayou$Phylum))))
+mycolors <- newCols(length(unique(Jiayou$Phylum)))
+names(mycolors) <- unique(Jiayou$Phylum)
+mycolors <- list(Phylum = mycolors)
+
+pheatmap(data_subset, cellwidth = 18,cellheight = 15,color= colorpanel(75, "brown", "yellow", "dark grey"),
+         fontsize_row =12, fontsize_col = 13,angle_col = "45", trace="none", 
+         annotation_row= Jiayou, annotation_colors = mycolors, fontsize = 11, legend = T, 
+         legend_breaks = c(4.5,2,-1), border_color = "dark orange", annotation_legend = T)
+
+
+
+
+

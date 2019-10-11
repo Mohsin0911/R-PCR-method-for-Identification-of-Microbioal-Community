@@ -1,0 +1,48 @@
+Figure 2 -c) boxplot_Based on 16S rRNA ####### 16S rRAN
+
+rm(list=ls())
+
+library(ggplot2)
+### Uploade file
+
+attach(X16S_simp)
+ggplot(X16S_simp, aes(fill=Samples, x=factor(Samples, levels = c("HL","HR", "ML", "MR", "LL", "LR", "RL", "RR")), y=`Simpson Index`))+ 
+  geom_boxplot(lwd = 0.7, fatten = 0.8, width =0.7)+
+  scale_fill_manual(values = c('#00ffd2','#efeff2','#F9E559','#b0ff00',
+                               '#12E772','#fdff00','#fdf498','#FF0130'))+
+  theme_classic()+theme(axis.line.x.bottom = element_line(size = 1),
+                        panel.border = element_rect(colour = "black", fill=NA, size = 1), 
+                        axis.text.x = element_text(color = "black", size = 14, angle = 45, hjust = .5, vjust = .5, face = "plain"),
+                        axis.text.y = element_text(color = "black", size = 14, angle = 0, hjust = 1, vjust = 0, face = "plain"),
+                        axis.title.y = element_text(color = "black", size = 14, angle = 90, hjust = .5, vjust = .5, face = "plain"),
+                        axis.title.x = element_text(color = "black", size = 14),
+                        axis.line.x = element_line(size = 1), axis.line.y = element_line(size = 1), 
+                        legend.text = element_text(size = 12),legend.title = element_text(size = 14), 
+                        legend.key = element_rect(fill = "white"), legend.key.height = unit(0.5, "cm"),
+                        legend.key.width = unit(0.5, "cm"))
+
+
+
+
+Figure 2 -d) boxplot_Based on R-PCR ####### R-PCR
+rm(list=ls())
+
+library(ggplot2)
+### Uploade file
+
+attach(RPCR_simp)
+
+ggplot(RPCR_simp, aes(fill=Samples, x=factor(Samples, levels = c("HL","HR", "ML", "MR", "LL", "LR", "RL", "RR")), y=Values))+ 
+  geom_boxplot(lwd = 0.7, fatten = 0.8, width =0.7)+coord_cartesian(ylim = c(0.99,0.96))+
+  scale_fill_manual(values = c('#00ffd2','#efeff2','#F9E559','#b0ff00',
+                               '#12E772','#fdff00','#fdf498','#FF0130'))+
+  theme_classic()+theme(axis.line.x.bottom = element_line(size = 1),
+                        panel.border = element_rect(colour = "black", fill=NA, size = 1), 
+                        axis.text.x = element_text(color = "black", size = 14, angle = 45, hjust = .5, vjust = .5, face = "plain"),
+                        axis.text.y = element_text(color = "black", size = 14, angle = 0, hjust = 1, vjust = 0, face = "plain"),
+                        axis.title.y = element_text(color = "black", size = 14, angle = 90, hjust = .5, vjust = .5, face = "plain"),
+                        axis.title.x = element_text(color = "black", size = 14),
+                        axis.line.x = element_line(size = 1), axis.line.y = element_line(size = 1), 
+                        legend.text = element_text(size = 12),legend.title = element_text(size = 14), 
+                        legend.key = element_rect(fill = "white"), legend.key.height = unit(0.6, "cm"),
+                        legend.key.width = unit(0.6, "cm"))

@@ -1,0 +1,239 @@
+#### Supplymentary Figure 04-a-16S rRNA gene sequencing for Paper Supplymentary materials #####
+
+rm(list=ls())
+
+library(pheatmap)
+library(cluster) #clustering algorithms
+library(RColorBrewer)
+library(gplots)
+
+### Uploade file
+data<- read.csv(file.choose(), sep=",", header = T, row.names = "X", text = Lines, check.names = FALSE)
+
+data_subset <- as.matrix(data)
+
+pheatmap(data_subset, cellheight = 10, cluster_cols =F, cluster_rows = F)
+
+Jiayou <- data.frame(row.names = rownames(data_subset), 
+                     Phylum = factor(rep(c("Betaproteobacteria","Alphaproteobacteria","Betaproteobacteria", 
+                                           "Alphaproteobacteria","Acidobacteria","Firmicutes", 
+                                           "Firmicutes","Alphaproteobacteria", "Bacteroidetes", 
+                                           "Betaproteobacteria", "Betaproteobacteria", "Firmicutes",
+                                           "Bacteroidetes","Firmicutes", "Bacteroidetes", 
+                                           "Actinobacteria", "Bacteroidetes", "Gammaproteobacteria", 
+                                           "Alphaproteobacteria","Actinobacteria", "Alphaproteobacteria",
+                                           "Gammaproteobacteria", "Firmicutes", "Bacteroidetes", 
+                                           "Gammaproteobacteria","Chloroflexi","Actinobacteria", 
+                                           "Acidobacteria", "Actinobacteria", "Actinobacteria",
+                                           "Betaproteobacteria", "Betaproteobacteria", "Betaproteobacteria",
+                                           "Gammaproteobacteria", "Alphaproteobacteria","Alphaproteobacteria", 
+                                           "Alphaproteobacteria","Alphaproteobacteria", "Betaproteobacteria",
+                                           "Firmicutes", "Actinobacteria", "Alphaproteobacteria", 
+                                           "Betaproteobacteria", "Betaproteobacteria", "Firmicutes", 
+                                           "Deltaproteobacteria", "Actinobacteria", "Alphaproteobacteria", 
+                                           "Actinobacteria", "Actinobacteria", "Actinobacteria", 
+                                           "Alphaproteobacteria", "Firmicutes", "Betaproteobacteria", 
+                                           "Firmicutes", "Gammaproteobacteria", "Betaproteobacteria", 
+                                           "Betaproteobacteria", "Betaproteobacteria", "Betaproteobacteria", 
+                                           "Actinobacteria", "Alphaproteobacteria", "Gammaproteobacteria", 
+                                           "Actinobacteria", "Betaproteobacteria", "Actinobacteria", 
+                                           "Firmicutes", "Gammaproteobacteria", "Alphaproteobacteria", 
+                                           "Alphaproteobacteria", "Actinobacteria", "Betaproteobacteria", 
+                                           "Alphaproteobacteria", "Gammaproteobacteria", "Actinobacteria", 
+                                           "Gammaproteobacteria", "Bacteroidetes", "Firmicutes", 
+                                           "Betaproteobacteria", "Alphaproteobacteria", "Actinobacteria", 
+                                           "Gammaproteobacteria", "Alphaproteobacteria", "Bacteroidetes", 
+                                           "Actinobacteria", "Acidobacteria", "Gammaproteobacteria", 
+                                           "Gammaproteobacteria", "Acidobacteria", "Acidobacteria", 
+                                           "Firmicutes", "Alphaproteobacteria", "Gammaproteobacteria", 
+                                           "Gammaproteobacteria", "Betaproteobacteria"), 
+                                         c(1, 1, 1,
+                                           1, 1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1))))
+
+
+newCols <- colorRampPalette(grDevices::rainbow(length(unique(Jiayou$Phylum))))
+mycolors <- newCols(length(unique(Jiayou$Phylum)))
+names(mycolors) <- unique(Jiayou$Phylum)
+mycolors <- list(Phylum = mycolors)
+
+$$$$$$$$$$$$$$$$$$$$$size%%%%%%%%%%%%%%%%
+  pheatmap(data_subset, cellwidth = 16,cellheight = 13,color= colorpanel(75, "violet", "yellow"),
+           angle_col = "315", trace="none",cluster_cols = F, cluster_rows = F, 
+           annotation_row= Jiayou, annotation_colors = mycolors,fontsize_col = 13 ,fontsize_row = 12, fontsize =20, legend = T, 
+           legend_breaks = 0:1, border_color = "brown", trace="none")
+
+
+
+#### Supplymentary Figure 04-b-R-PCR for Paper Supplymentary materials #####
+rm(list=ls())
+
+library(pheatmap)
+library(cluster) #clustering algorithms
+library(RColorBrewer)
+library(gplots)
+
+
+### Uploade file
+data<- read.csv(file.choose(), sep=",", header = T, row.names = "X", text = Lines, check.names = FALSE)
+
+data_subset <- as.matrix(data)
+
+pheatmap(data_subset, cellheight = 10, cluster_cols =F, cluster_rows = T)
+
+Jiayou <- data.frame(row.names = rownames(data_subset), 
+                     Phylum = factor(rep(c("Betaproteobacteria","Gammaproteobacteria","Betaproteobacteria",
+                                           "Bacteroidetes","Actinobacteria","Actinobacteria",
+                                           "Alphaproteobacteria","Alphaproteobacteria", "Betaproteobacteria", 
+                                           "Actinobacteria", "Gammaproteobacteria", "Bacteroidetes","Bacteroidetes",
+                                           "Gammaproteobacteria","Alphaproteobacteria","Betaproteobacteria",
+                                           "Firmicutes","Actinobacteria","Alphaproteobacteria",
+                                           "Spirochaetes", "Alphaproteobacteria","Betaproteobacteria",
+                                           "Gammaproteobacteria","Gammaproteobacteria","Firmicutes",
+                                           "Firmicutes","Gammaproteobacteria","Alphaproteobacteria",
+                                           "Betaproteobacteria", "Firmicutes","Alphaproteobacteria",
+                                           "Actinobacteria", "Bacteroidetes","Betaproteobacteria",
+                                           "Rhodothermaeota","Alphaproteobacteria","Alphaproteobacteria",
+                                           "Betaproteobacteria", "Gammaproteobacteria","Alphaproteobacteria", 
+                                           "Alphaproteobacteria", "Gammaproteobacteria","Bacteroidetes", 
+                                           "Actinobacteria", "Gammaproteobacteria","Actinobacteria",
+                                           "Firmicutes", "Planctomycetes","Actinobacteria",
+                                           "Gammaproteobacteria", "Gammaproteobacteria","Firmicutes",
+                                           "Alphaproteobacteria", "Actinobacteria","Gammaproteobacteria",
+                                           "Alphaproteobacteria", "Betaproteobacteria","Betaproteobacteria",
+                                           "Bacteroidetes","Betaproteobacteria","Actinobacteria",
+                                           "Actinobacteria", "Alphaproteobacteria","Actinobacteria",
+                                           "Alphaproteobacteria", "Actinobacteria","Actinobacteria",
+                                           "Alphaproteobacteria", "Firmicutes","Actinobacteria",
+                                           "Gammaproteobacteria", "Actinobacteria","Gammaproteobacteria",
+                                           "Alphaproteobacteria", "Alphaproteobacteria","Firmicutes",
+                                           "Firmicutes", "Alphaproteobacteria","Gammaproteobacteria",
+                                           "Gammaproteobacteria", "Bacteroidetes","Firmicutes",
+                                           "Firmicutes", "Actinobacteria","Alphaproteobacteria",
+                                           "Firmicutes", "Actinobacteria","Firmicutes", 
+                                           "Alphaproteobacteria", "Gammaproteobacteria","Betaproteobacteria",
+                                           "Acidobacteria", "Betaproteobacteria","Betaproteobacteria",
+                                           "Actinobacteria", "Actinobacteria","Choroflexi",
+                                           "Betaproteobacteria", "Actinobacteria","Bacteroidetes",
+                                           "Deltaproteobacteria","Betaproteobacteria","Alphaproteobacteria",
+                                           "Gammaproteobacteria", "Betaproteobacteria","Betaproteobacteria",
+                                           "Actinobacteria", "Actinobacteria","Alphaproteobacteria",
+                                           "Bacteroidetes", "Actinobacteria","Firmicutes",
+                                           "Gammaproteobacteria", "Gammaproteobacteria","Actinobacteria",
+                                           "Firmicutes", "Betaproteobacteria","Alphaproteobacteria",
+                                           "Alphaproteobacteria", "Actinobacteria","Bacteroidetes",
+                                           "Alphaproteobacteria", "Betaproteobacteria",
+                                           "Firmicutes","Gammaproteobacteria","Gammaproteobacteria",
+                                           "Alphaproteobacteria","Actinobacteria","Gammaproteobacteria",
+                                           "Betaproteobacteria","Gammaproteobacteria","Actinobacteria",
+                                           "Betaproteobacteria", "Acidobacteria", "Gammaproteobacteria",
+                                           "Betaproteobacteria", "Deltaproteobacteria", "Betaproteobacteria",
+                                           "Actinobacteria", "Gammaproteobacteria", "Actinobacteria",
+                                           "Firmicutes", "Betaproteobacteria", "Alphaproteobacteria",
+                                           "Gammaproteobacteria", "Firmicutes", "Gammaproteobacteria",
+                                           "Betaproteobacteria", "Firmicutes", "Bacteroidetes","Betaproteobacteria",
+                                           "Actinobacteria", "Gammaproteobacteria","Gammaproteobacteria",
+                                           "Gammaproteobacteria", "Actinobacteria","Actinobacteria",
+                                           "Gammaproteobacteria", "Firmicutes","Betaproteobacteria",
+                                           "Firmicutes","Betaproteobacteria","Actinobacteria",
+                                           "Alphaproteobacteria","Betaproteobacteria"),
+                                         c(1, 1, 1,
+                                           1, 1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1,
+                                           1,1,1))))
+
+
+newCols <- colorRampPalette(grDevices::rainbow(length(unique(Jiayou$Phylum))))
+mycolors <- newCols(length(unique(Jiayou$Phylum)))
+names(mycolors) <- unique(Jiayou$Phylum)
+mycolors <- list(Phylum = mycolors)
+
+$$$$$$$$$$$$$$$$$$$$$size%%%%%%%%%%%%%%%%
+  pheatmap(data_subset, cellwidth = 16,cellheight = 13,color= colorpanel(75, "violet", "yellow"),
+           angle_col = "315", trace="none",cluster_cols = F, cluster_rows = F, 
+           annotation_row= Jiayou, annotation_colors = mycolors,fontsize_col = 13 ,fontsize_row = 12, fontsize =20, legend = T, 
+           legend_breaks = 0:1, border_color = "brown", trace="none")
+
+
+
+
